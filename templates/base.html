@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet"  href="static/style.css">
+    <link type="text/css" rel="stylesheet"  href="style.css">
+    {% block title %}
+
+    {% endblock %}
 </head>
 <body>
     <div id = 'navbar'>
@@ -10,5 +13,8 @@
         <a class="navitem" id = "register">Register</a>
         <a class="navitem" id="homepage" href="/">home</a>
     </div>
+    {% block body %}
+
+    {% endblock %}
 </body>
 </html>
