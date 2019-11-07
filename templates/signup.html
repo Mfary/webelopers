@@ -9,10 +9,14 @@
     </form>
     <div id="errors">
         {% if username_error %}
+            <p>
             نام کاربری شما در سیستم موجود است
+            </p>
         {% endif %}
         {% if password_error %}
+            <p>
             گذرواژه و تکرار گذرواژه یکسان نیستند
+            </p>
         {% endif %}
     </div>
 {% endblock %}
