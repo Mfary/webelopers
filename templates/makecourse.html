@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>
+        New course
+    </title>
+{% endblock %}
+{% block body %}
+    <h2>Change</h2>
+    <form id="setting_form" method="post" action="/make_course/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Make</button>
+    </form>
+{% endblock %}

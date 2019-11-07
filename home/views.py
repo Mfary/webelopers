@@ -91,6 +91,7 @@ def panel(request):
 
 
 def make_course(request):
+    form = None
     if request.method == 'POST':
         form = MakeCourseForm(request.POST)
         course = form.save(commit=False)
@@ -99,4 +100,4 @@ def make_course(request):
         return redirect('/')
     else:
         form = MakeCourseForm()
-    return render(request, 'makecourse.html',)
+    return render(request, 'makecourse.html', {'form': form})
