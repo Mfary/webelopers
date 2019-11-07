@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.forms import Form
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -15,8 +16,12 @@ def homepage(request):
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        try:
-            form.is_valid()
+        password_error = form.data.get('password1') != form.data.get('password2')
+        username_error = User.objects.filter(username=form.data.get('username'))
+        if password_error or username_error:
+            return render(request, 'signup.html', {'form': form, 'password_error': password_error, 'username_error':
+                username_error})
+        if form.is_valid():
             user = form.save(commit=False)
             user.created_by = request.user
             user.save()
@@ -25,8 +30,6 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('/')
-        except:
-            print(form.errors)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
