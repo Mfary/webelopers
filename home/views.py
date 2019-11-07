@@ -63,8 +63,8 @@ def contact_us(request):
     if request.method == 'POST':
         form = FeedBack(request.POST)
         form.is_valid()
-        email = EmailMessage(form.cleaned_data.get('title'), form.cleaned_data.get('text') + form.cleaned_data.get(
-            'email'), to=['webe19lopers@gmail.com'])
+        email = EmailMessage(subject=form.cleaned_data.get('title'), body=form.cleaned_data.get('email') + '\n' + form.
+                             cleaned_data.get('text'), to=['mfarahani1379@gmail.com'])
         email.send()
         return render(request, 'success.html')
     else:
@@ -80,3 +80,6 @@ def success(request):
 def profile(request):
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
                                             'username': request.user.username})
+
+def change(request):
+    return render(request, 'change.html', {'form': ProfileForm()})

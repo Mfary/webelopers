@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from home.views import homepage, signup, logout_view, login_view, contact_us, success, profile
+from home.views import homepage, signup, logout_view, login_view, contact_us, success, profile, change
 
 urlpatterns = [
     path('' , homepage),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('contactus/', contact_us),
     path('success/', success),
     path('profile/', profile),
+    path('change/', change),
 ]
