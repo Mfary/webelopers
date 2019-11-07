@@ -1,3 +1,4 @@
+from django.forms import Form
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -19,7 +20,7 @@ def signup(request):
             user.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-           # user = authenticate(username=username, password=raw_password)
+            user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('/')
     else:
@@ -46,5 +47,5 @@ def login_view(request):
             else:
                 error = True
     else:
-        form = SignUpForm()
+        form = SignInForm()
     return render(request, 'signin.html', {'form': form, 'error': error})
