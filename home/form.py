@@ -23,7 +23,7 @@ class SignUpForm(UserCreationForm):
 
 class SignInForm():
     username = forms.CharField(max_length=30, required=True)
-    password = forms.CharField(max_length=30, required=True)
+    password = forms.CharField(max_length=30, required=True , widget=forms.PasswordInput)
 
     class Meta:
         model = User
