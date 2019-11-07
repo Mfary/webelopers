@@ -19,8 +19,8 @@ def signup(request):
         password_error = form.data.get('password1') != form.data.get('password2')
         username_error = User.objects.filter(username=form.data.get('username'))
         if password_error or username_error:
-            return render(request, 'signup.html', {'form': form, 'password_error': password_error, 'username_error':
-                username_error})
+            return render(request, 'signup.html', {'form': SignUpForm(), 'password_error': password_error,
+                                                   'username_error': username_error})
         if form.is_valid():
             user = form.save(commit=False)
             user.created_by = request.user
