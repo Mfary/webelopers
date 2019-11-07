@@ -38,3 +38,12 @@ class FeedBack(Form):
     title = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(required=True)
     text = forms.CharField(min_length=10, max_length=250 , required=True , widget=forms.Textarea)
+
+
+class ProfileForm(Form):
+    first_name = forms.CharField(max_length=30, required=False)
+    last_name = forms.CharField(max_length=30, required=False)
+
+    class Meta:
+        model = User
+        fields = ('first_name' , 'last_name' ,)
