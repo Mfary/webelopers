@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet"  href="style.css">
+    {% load static %}
+    <link type="text/css" rel="stylesheet"  href="{% static "style.css" %}">
     {% block title %}
 
     {% endblock %}
