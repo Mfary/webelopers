@@ -41,4 +41,9 @@ class FeedBack(Form):
 
 
 class ProfileForm(Form):
-    pass
+    first_name = forms.CharField(max_length=30, required=False)
+    last_name = forms.CharField(max_length=30, required=False)
+
+    class Meta:
+        model = User
+        fields = ('first_name' , 'last_name' ,)
