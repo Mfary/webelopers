@@ -5,7 +5,6 @@ from django.forms import Form
 
 
 class SignUpForm(UserCreationForm):
-    user_name = forms.CharField(max_length=20, required=True)
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, required=True)
