@@ -1,8 +1,8 @@
-from django.contrib import admin
 from django.urls import path, include
 
-from home.views import homepage
+from home.views import homepage, signup
 
 urlpatterns = [
-    path('' , homepage)
+    path('' , homepage),
+    path('signup/', signup)
 ]
