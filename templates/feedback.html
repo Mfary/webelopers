@@ -2,7 +2,7 @@
 
 {% block body %}
 <h2>contact us</h2>
-<form id="contact_us_form" method="post" action="/contactus">
+<form id="contact_us_form" method="post" action="/contactus/">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Send</button>
