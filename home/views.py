@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.forms import Form
 from django.shortcuts import render, redirect
@@ -10,7 +11,7 @@ from home.form import SignUpForm, SignInForm, FeedBack
 
 
 def homepage(request):
-    return render(request , 'main.html')
+    return render(request, 'main.html')
 
 
 def signup(request):
@@ -73,3 +74,9 @@ def contact_us(request):
 
 def success(request):
     return render(request, 'success.html')
+
+
+@login_required(login_url='/login')
+def profile(request):
+    return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
+                                            'username': request.user.username})
