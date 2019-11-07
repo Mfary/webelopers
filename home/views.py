@@ -2,9 +2,10 @@ from django.forms import Form
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
 
 # Create your views here.
-from home.form import SignUpForm, SignInForm
+from home.form import SignUpForm, SignInForm, FeedBack
 
 
 def homepage(request):
@@ -14,7 +15,8 @@ def homepage(request):
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        if form.is_valid():
+        try:
+            form.is_valid()
             user = form.save(commit=False)
             user.created_by = request.user
             user.save()
@@ -23,6 +25,8 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('/')
+        except:
+            print(form.errors)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -49,3 +53,26 @@ def login_view(request):
     else:
         form = SignInForm()
     return render(request, 'signin.html', {'form': form, 'error': error})
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = FeedBack(request.POST)
+        form.is_valid()
+        # send_mail(
+        #     form.cleaned_data.get('title'),
+        #     form.cleaned_data.get('context') + form.cleaned_data.get('email'),
+        #     'django@django.com',
+        #     recipient_list=['clappleid@outlook.com'],
+        #     auth_user='mohammadsadeghkeshavarzi@yahoo.com',
+        #     auth_password='kSmS09193360118',
+        #     fail_silently=False,
+        # )
+        return redirect('/success')
+    else:
+        form = FeedBack()
+    return render(request, 'feedback.html', {'form': form})
+
+
+def success(request):
+    return render(request, 'success.html')
