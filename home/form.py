@@ -35,5 +35,5 @@ class SignInForm(Form):
 
 class FeedBack(Form):
     title = forms.CharField(max_length=30, required=True)
-    text = forms.CharField(min_length=10, max_length=250 , required=True , widget=forms.Textarea)
     email = forms.EmailField(required=True)
+    text = forms.CharField(min_length=10, max_length=250 , required=True , widget=forms.Textarea)
