@@ -71,7 +71,7 @@ def contact_us(request):
         #      auth_password='kSmS09193360118',
         #      fail_silently=False,
         #  )
-        return render(request,'/success')
+        return render(request, 'success.html')
     else:
         form = FeedBack()
     return render(request, 'feedback.html', {'form': form})
