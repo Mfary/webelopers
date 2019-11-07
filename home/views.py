@@ -83,3 +83,7 @@ def profile(request):
 
 def change(request):
     return render(request, 'change.html', {'form': ProfileForm()})
+
+
+def panel(request):
+    return render(request, 'panel.html')
