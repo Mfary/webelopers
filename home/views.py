@@ -15,8 +15,8 @@ def homepage(request):
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.validate_unique()
+        try:
+            form.is_valid()
             user = form.save(commit=False)
             user.created_by = request.user
             user.save()
@@ -25,6 +25,8 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('/')
+        except:
+            print(form.errors)
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -57,15 +59,15 @@ def contact_us(request):
     if request.method == 'POST':
         form = FeedBack(request.POST)
         form.is_valid()
-        send_mail(
-            form.cleaned_data.get('title'),
-            form.cleaned_data.get('context') + form.cleaned_data.get('email'),
-            'django@django.com',
-            recipient_list=['clappleid@outlook.com'],
-            auth_user='mohammadsadeghkeshavarzi@yahoo.com',
-            auth_password='kSmS09193360118',
-            fail_silently=False,
-        )
+        # send_mail(
+        #     form.cleaned_data.get('title'),
+        #     form.cleaned_data.get('context') + form.cleaned_data.get('email'),
+        #     'django@django.com',
+        #     recipient_list=['clappleid@outlook.com'],
+        #     auth_user='mohammadsadeghkeshavarzi@yahoo.com',
+        #     auth_password='kSmS09193360118',
+        #     fail_silently=False,
+        # )
         return redirect('/success')
     else:
         form = FeedBack()

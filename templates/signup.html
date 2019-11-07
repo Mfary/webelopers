@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  <h2>Sign up</h2>
-  <form method="post" id="register_form" action="/signup/">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" name="submit">Sign up</button>
-  </form>
+    <h2>Sign up</h2>
+    <form method="post" id="register_form" action="/signup/">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="submit">Sign up</button>
+    </form>
+    <div id="errors">
+        {% if username_error %}
+            نام کاربری شما در سیستم موجود است
+        {% endif %}
+        {% if password_error %}
+            گذرواژه و تکرار گذرواژه یکسان نیستند
+        {% endif %}
+    </div>
 {% endblock %}
