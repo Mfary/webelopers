@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import EmailMessage
 
 # Create your views here.
-from home.form import SignUpForm, SignInForm, FeedBack
+from home.form import SignUpForm, SignInForm, FeedBack, ProfileForm
 
 
 def homepage(request):
@@ -64,7 +64,7 @@ def contact_us(request):
         form = FeedBack(request.POST)
         form.is_valid()
         email = EmailMessage(subject=form.cleaned_data.get('title'), body=form.cleaned_data.get('email') + '\n' + form.
-                             cleaned_data.get('text'), to=['mfarahani1379@gmail.com'])
+                             cleaned_data.get('text') + '\n', to=['mfarahani1379@gmail.com'])
         email.send()
         return render(request, 'success.html')
     else:
