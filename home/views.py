@@ -59,15 +59,15 @@ def contact_us(request):
     if request.method == 'POST':
         form = FeedBack(request.POST)
         form.is_valid()
-        send_mail(
-             form.cleaned_data.get('title'),
-             form.cleaned_data.get('context') + form.cleaned_data.get('email'),
-             'django@django.com',
-             recipient_list=['clappleid@outlook.com'],
-             auth_user='mohammadsadeghkeshavarzi@yahoo.com',
-             auth_password='kSmS09193360118',
-             fail_silently=False,
-         )
+        # send_mail(
+        #      form.cleaned_data.get('title'),
+        #      form.cleaned_data.get('text') + form.cleaned_data.get('email'),
+        #      'django@django.com',
+        #      recipient_list=['clappleid@outlook.com'],
+        #      auth_user='mohammadsadeghkeshavarzi@yahoo.com',
+        #      auth_password='kSmS09193360118',
+        #      fail_silently=False,
+        #  )
         return render(request,'/success')
     else:
         form = FeedBack()
