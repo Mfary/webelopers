@@ -23,3 +23,21 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+def login_view(request):
+    error = True
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            if user:
+                login(request, user)
+                return redirect('/')
+            else:
+                error = False
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form , 'error' : error})
