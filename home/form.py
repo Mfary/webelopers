@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import Form
 
+from home.models import Course
+
 
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=20, required=True)
@@ -46,4 +48,21 @@ class ProfileForm(Form):
 
     class Meta:
         model = User
-        fields = ('first_name' , 'last_name' ,)
+        fields = ('first_name', 'last_name',)
+
+
+class MakeCourseForm(Form):
+    choice = {}
+    department = forms.CharField(max_length=50 , required=True)
+    name = forms.CharField(max_length=50, required=True)
+    course_number = forms.IntegerField(required=True)
+    group_number = forms.IntegerField(required=True)
+    teacher = forms.CharField(max_length=60, required=True)
+    start_time = forms.TimeField(required=True)
+    end_time = forms.TimeField(required=True)
+    first_day = forms.ChoiceField(choices=choice, required=True)
+    second_day = forms.ChoiceField(choices=choice, required=False)
+
+    class Meta:
+        model = Course
+        fields = {'department', 'name', 'course_number', 'group_number', 'teacher', 'start_time', 'end_time', 'first_day', 'second_day',}
