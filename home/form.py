@@ -31,3 +31,9 @@ class SignInForm(Form):
     class Meta:
         model = User
         fields = ('username', 'password1', )
+
+
+class FeedBack(Form):
+    title = forms.CharField(max_length=30, required=True)
+    context = forms.CharField(min_length=10, max_length=250 , required=True)
+    email = forms.EmailField(required=True)
