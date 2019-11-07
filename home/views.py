@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-from home.form import SignUpForm, SignInForm
+from home.form import SignUpForm, SignInForm, FeedBack
 
 
 def homepage(request):
@@ -15,6 +15,7 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            form.validate_unique()
             user = form.save(commit=False)
             user.created_by = request.user
             user.save()
@@ -49,3 +50,16 @@ def login_view(request):
     else:
         form = SignInForm()
     return render(request, 'signin.html', {'form': form, 'error': error})
+
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = FeedBack(request.POST)
+        form.is_valid()
+        return redirect('/success')
+    else:
+        form = FeedBack()
+    return render(request, 'feedback.html', {'form': form})
+
+def success(request):
+    return render(request, 'success.html')
