@@ -37,8 +37,7 @@ def login_view(request):
     error = False
     if request.method == 'POST':
         form = SignInForm(request.POST)
-        if form.is_valid():
-             pass
+        form.is_valid()
         username = form.cleaned_data.get('username')
         raw_password = form.cleaned_data.get('password')
         user = authenticate(username=username, password=raw_password)
