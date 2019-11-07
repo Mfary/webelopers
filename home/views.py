@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-from home.form import SignUpForm
+from home.form import SignUpForm, SignInForm
 
 
 def homepage(request):
@@ -31,18 +31,18 @@ def logout_view(request):
 
 
 def login_view(request):
-    error = True
+    error = False
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
+            raw_password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password)
             if user:
                 login(request, user)
                 return redirect('/')
             else:
-                error = False
+                error = True
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form , 'error' : error})
+    return render(request, 'signin.html', {'form': form, 'error': error})

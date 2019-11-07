@@ -21,10 +21,10 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
 
-class SignInForm(UserCreationForm):
-    username = forms.CharField(max_length=30 , required=True)
-    password = forms.CharField(max_length=30 , required=True)
+class SignInForm():
+    username = forms.CharField(max_length=30, required=True)
+    password = forms.CharField(max_length=30, required=True)
 
     class Meta:
         model = User
-        fields = ('username', 'password1')
+        fields = ('username', 'password1', )
