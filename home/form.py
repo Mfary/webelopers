@@ -15,6 +15,7 @@ class SignUpForm(UserCreationForm):
         label="password confirm",
         widget=forms.PasswordInput,
     )
+
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
@@ -23,3 +24,7 @@ class SignUpForm(UserCreationForm):
 class SignInForm(UserCreationForm):
     username = forms.CharField(max_length=30 , required=True)
     password = forms.CharField(max_length=30 , required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'password1')
