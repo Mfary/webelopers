@@ -118,7 +118,9 @@ def make_course(request):
 @login_required(login_url='/login')
 def show_courses(request):
     if request.POST:
+        search = True
         courses = Course.objects.filter(department=request.POST.search_query)
     else:
+        search = False
         courses = Course.objects.all()
-    return render(request, 'courses.html', {'courses': courses})
+    return render(request, 'courses.html', {'courses': courses, 'search': search})
