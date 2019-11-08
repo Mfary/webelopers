@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import Form
+from django.forms import Form, ModelForm
 
 from home.models import Course
 
@@ -51,7 +51,7 @@ class ProfileForm(Form):
         fields = ('first_name', 'last_name',)
 
 
-class MakeCourseForm(Form):
+class MakeCourseForm(ModelForm):
     choice = {('0', 'Saturday'), ('1', 'Sunday'), ('2', 'Monday'), ('3', 'Tuesday'), ('4', 'Wednesday')}
     department = forms.CharField(max_length=50 , required=True)
     name = forms.CharField(max_length=50, required=True)
