@@ -145,7 +145,7 @@ def register_course(request , course_id):
     course = Course.objects.get(course_number=course_id)
     profile = Profile.objects.get(username=request.user.username)
     profile.courses.add(course)
-    show_courses(request)
+    return redirect('/courses')
 
 
 @login_required(login_url='/login')
@@ -153,4 +153,4 @@ def remove_course(request , course_id):
     course = Course.objects.get(course_number=course_id)
     profile = Profile.objects.get(username=request.user.username)
     profile.courses.remove(course)
-    show_courses(request)
+    return redirect('/courses')
