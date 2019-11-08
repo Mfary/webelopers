@@ -3,10 +3,6 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Profile(User):
-    image = models.ImageField()
-
-
 class Course(models.Model):
     department = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
@@ -17,3 +13,10 @@ class Course(models.Model):
     end_time = models.TimeField()
     first_day = models.CharField(max_length=30)
     second_day = models.CharField(max_length=30)
+
+
+class Profile(User):
+    image = models.ImageField()
+    courses = models.ManyToManyField(Course)
+
+
