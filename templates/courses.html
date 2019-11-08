@@ -62,7 +62,7 @@
                     <i class="user outline icon"></i>
                     {{ course.teacher }}
                 </div>
-            <a class="add" href="/add/?q={{ course.course_number }}">register</a>
+            <a class="add" href="/add/{{ course.course_number }}">register</a>
             </div>
         {% endfor %}
     </div>
