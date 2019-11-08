@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import EmailMessage
 
 # Create your views here.
-from home.form import SignUpForm, SignInForm, FeedBack
+from home.form import SignUpForm, SignInForm, FeedBack, ProfileForm
 
 
 def homepage(request):
@@ -81,5 +81,15 @@ def profile(request):
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
                                             'username': request.user.username})
 
+
 def change(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.data.get('first_name'):
+            request.user.first_name = form.data.get('first_name')
+            request.user.save()
+        if form.data.get('last_name'):
+            request.user.last_name = form.data.get('last_name')
+            request.user.save()
+        return redirect('/profile')
     return render(request, 'change.html', {'form': ProfileForm()})
