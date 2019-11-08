@@ -5,23 +5,27 @@
     </title>
 {% endblock %}
 {% block body %}
-    <div id="all_courses" class="ui list">
+    <div id="all_courses" class="ui divided relaxed list">
         {% for course in courses %}
             <div class="item {{ course.course_number }}_{{ course.group_number }}">
                 <h4>{{ course.name }}</h4>
                 <div class="ui label">
-                     {{ course.department }}
+                    <i class="building outline icon"></i>
+                    {{ course.department }}
                 </div>
-                <div>
+                <div class="ui label">
+                    <i class="calendar outline icon"></i>
                     {{ course.first_day }}
                     {% if course.second_day %}
                         {{ course.second_day }}
                     {% endif %}
                 </div>
-                <div>
-                    {{ course.start_time.hour }}:{{ course.start_time.minute }} {{ course.end_time.hour }}:{{  course.end_time.minute }}
+                <div class="ui label">
+                    <i class="clock outline icon"></i>
+                    {{ course.start_time.hour }}:{{ course.start_time.minute }} {{ course.end_time.hour }}:{{ course.end_time.minute }}
                 </div>
-                <div>
+                <div class="ui label">
+                    <i class="user outline icon"></i>
                     {{ course.teacher }}
                 </div>
             </div>
