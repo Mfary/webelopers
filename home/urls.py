@@ -20,4 +20,5 @@ urlpatterns = [
     path('courses/', show_courses),
     path('add/<course_id>', register_course),
     path('remove/<course_id>', remove_course),
+    path('remove/<course_id>', course_detail),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

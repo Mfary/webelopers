@@ -156,3 +156,9 @@ def remove_course(request , course_id):
     profile = Profile.objects.get(username=request.user.username)
     profile.courses.remove(course)
     return redirect('/courses')
+
+
+@login_required(login_url='/login')
+def remove_course(request , course_id):
+    course = Course.objects.get(course_number=course_id)
+    return render(request, 'detail.html', {'course': course})
