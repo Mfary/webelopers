@@ -5,10 +5,10 @@
     </title>
 {% endblock %}
 {% block body %}
-    <h2>Change</h2>
-    <form id="make_course" method="post" action="/make_course/">
+    <h2>New course</h2>
+    <form id="make_course" method="post" action="/make_course/" class="ui form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Make</button>
+        <button type="submit" class="ui button">Make</button>
     </form>
 {% endblock %}

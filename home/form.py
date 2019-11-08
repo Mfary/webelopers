@@ -52,8 +52,7 @@ class ProfileForm(Form):
 
 
 class MakeCourseForm(Form):
-    choice = {('Saturday', 'Saturday'), ('Sunday', 'Sunday'), ('Monday', 'Monday'), ('Tuesday', 'Tuesday'), (
-        'Wednesday', 'Wednesday')}
+    choice = {('0', 'Saturday'), ('1', 'Sunday'), ('2', 'Monday'), ('3', 'Tuesday'), ('4', 'Wednesday')}
     department = forms.CharField(max_length=50 , required=True)
     name = forms.CharField(max_length=50, required=True)
     course_number = forms.IntegerField(required=True)

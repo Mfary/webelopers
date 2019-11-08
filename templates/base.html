@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    </head>
     <title></title>
     <meta charset="UTF-8">
     {% load static %}
@@ -8,18 +14,18 @@
     {% block title %}
     {% endblock %}
 </head>
-<body>
-<div id='navbar'>
+<body class="ui">
+<div id='navbar' class="ui inverted menu">
+    <a id="homepage" href="/" class="item">Home</a>
     {% if not request.user.is_authenticated %}
-        <a class="navitem" id="login" href="/login/">login</a>
-        <a class="navitem" id="register" href="/signup/">Register</a>
+        <a id="login" href="/login/" class="item">Login</a>
+        <a id="register" href="/signup/" class="item">Register</a>
     {% else %}
-        <a class="navitem" id="logout" href="/logout/">Logout</a>
-        <a class="navitem" id="profile" href="/profile/">Profile</a>
-        <a class="navitem" id="panel" href="/panel/">panel</a>
+        <a id="profile" href="/profile/" class="item">Profile</a>
+        <a id="panel" href="/panel/" class="item">Panel</a>
+        <a id="logout" href="/logout/" class="item">Logout</a>
     {% endif %}
-    <a class="navitem" id="homepage" href="/">home</a>
-    <a class="navitem" id="contact_us" href="/contactus/">contact us</a>
+    <a id="contact_us" href="/contactus/" class="item">Contact us</a>
 </div>
 {% block body %}
 
