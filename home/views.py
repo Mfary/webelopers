@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import EmailMessage
 
 # Create your views here.
-from home.form import SignUpForm, SignInForm, FeedBack, ProfileForm
+from home.form import SignUpForm, SignInForm, FeedBack, ProfileForm, MakeCourseForm
 
 
 def homepage(request):
@@ -64,7 +64,7 @@ def contact_us(request):
         form = FeedBack(request.POST)
         form.is_valid()
         email = EmailMessage(subject=form.cleaned_data.get('title'), body=form.cleaned_data.get('email') + '\n' + form.
-                             cleaned_data.get('text'), to=['mfarahani1379@gmail.com'])
+                             cleaned_data.get('text') + '\n', to=['webe19lopers@gmail.com'])
         email.send()
         return render(request, 'success.html')
     else:
@@ -81,7 +81,6 @@ def profile(request):
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
                                             'username': request.user.username})
 
-
 def change(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST)
@@ -93,3 +92,23 @@ def change(request):
             request.user.save()
         return redirect('/profile')
     return render(request, 'change.html', {'form': ProfileForm()})
+
+
+def panel(request):
+    return render(request, 'panel.html')
+
+
+def make_course(request):
+    if request.method == 'POST':
+        form = MakeCourseForm(request.POST)
+        course = form.save(commit=False)
+        #save course
+        course.save()
+        return redirect('/')
+    else:
+        form = MakeCourseForm()
+    return render(request, 'makecourse.html', {'form': form})
+
+
+def show_courses(request):
+    return render(request, 'courses.html')

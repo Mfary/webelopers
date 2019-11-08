@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
     <h2>Change</h2>
-    <form id="setting_form" method="post" action=".">
+    <form id="setting_form" method="post" action="/change/">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Change</button>
