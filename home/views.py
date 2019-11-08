@@ -133,11 +133,12 @@ def show_courses(request):
             search_courses = search_courses | Course.objects.filter(name=request.POST.get('search_query'))
     else:
         search = False
-    return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses})
+    return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses, 'my_courses': Profile.objects.get(user=request.user).courses})
 
 
 login_required(login_url='/login')
 def register_course(request , id):
     course = Course.objects.filter(course_number=id)
     profile = Profile.objects.get(user=request.user)
+    profile.courses.add(course)
     return redirect('/courses')
