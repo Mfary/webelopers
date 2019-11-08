@@ -81,6 +81,7 @@ def profile(request):
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
                                             'username': request.user.username})
 
+
 def change(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST)
