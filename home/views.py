@@ -135,7 +135,7 @@ def show_courses(request):
             search_courses = search_courses | Course.objects.filter(name=request.POST.get('search_query'))
     else:
         search = False
-    return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses, 'my_courses': Profile.objects.get(user=request.user).courses.all(),}
+    return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses, 'my_courses': Profile.objects.get(username=request.user.username).courses.all()})
 
 
 @login_required(login_url='/login')
