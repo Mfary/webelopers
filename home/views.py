@@ -141,8 +141,8 @@ def show_courses(request):
 
 
 @login_required(login_url='/login')
-def register_course(request , id):
-    course = Course.objects.filter(course_number=id)
-    profile = Profile.objects.get(user=request.user)
+def register_course(request , course_id):
+    course = Course.objects.get(course_number=course_id)
+    profile = Profile.objects.get(username=request.user.username)
     profile.courses.add(course)
     return redirect('/courses')

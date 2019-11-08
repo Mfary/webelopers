@@ -1,5 +1,4 @@
-from django.conf.urls import url
-from django.urls import path, include, re_path
+from django.urls import path, include
 
 from home.views import homepage, signup, logout_view, login_view, contact_us, success, profile, change, panel, \
     make_course, show_courses, register_course
@@ -19,5 +18,5 @@ urlpatterns = [
     path('panel/', panel),
     path('make_course/', make_course),
     path('courses/', show_courses),
-    url(r'/add/(\d+)', register_course),
+    path('add/<course_id>', register_course),
 ]
