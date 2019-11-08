@@ -134,3 +134,10 @@ def show_courses(request):
     else:
         search = False
     return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses})
+
+
+login_required(login_url='/login')
+def register_course(request , id):
+    course = Course.objects.filter(course_number=id)
+    #register
+    return redirect('/courses')

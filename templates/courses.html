@@ -5,10 +5,9 @@
     </title>
 {% endblock %}
 {% block body %}
-    <h2>Result</h2>
     <form id="search_form" method="post" action="/courses/" class="ui form">
         {% csrf_token %}
-        <input name="search_query">
+        <input name="search_query" required>
         <button type="submit" class="ui button" name="submit">Search</button>
         <div class="ui checkbox">
             <input name="department" type="checkbox">
@@ -23,10 +22,11 @@
             <label>Course</label>
         </div>
     </form>
+    <h2>Result</h2>
     {% if search %}
         <div id="search_result" class="ui divided relaxed list">
             {% for course in search_courses %}
-                <div class="item {{ course.course_number }}_{{ course.group_number }}">
+                <div class="{{ course.course_number }}_{{ course.group_number }}">
                     <div class="ui label">
                         {{ course.name }}
                     </div>
@@ -41,7 +41,7 @@
     <h2>Courses</h2>
     <div id="all_courses" class="ui divided relaxed list">
         {% for course in courses %}
-            <div class="item {{ course.course_number }}_{{ course.group_number }}">
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
                 <h4>{{ course.name }}</h4>
                 <div class="ui label">
                     <i class="building outline icon"></i>
@@ -62,6 +62,7 @@
                     <i class="user outline icon"></i>
                     {{ course.teacher }}
                 </div>
+            <a class="add" href="/add/?q={{ course.course_number }}">register</a>
             </div>
         {% endfor %}
     </div>
