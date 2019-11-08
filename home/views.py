@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.forms import Form
@@ -121,7 +123,14 @@ def show_courses(request):
     search_courses = {}
     if request.POST:
         search = True
-        search_courses = Course.objects.filter(department=request.POST.get('search_query'))
+        if not request.POST.get('department') and not request.POST.get('teacher')  and not request.POST.get('course') :
+            search_courses = chain(search_courses , Course.objects.filter(department=request.POST.get('search_query')))
+        if request.POST.get('department'):
+            search_courses = chain(search_courses , Course.objects.filter(department=request.POST.get('search_query')))
+        if request.POST.get('teacher') :
+            search_courses = chain(search_courses , Course.objects.filter(teacher=request.POST.get('search_query')))
+        if request.POST.get('course'):
+            search_courses = chain(search_courses, Course.objects.filter(name=request.POST.get('search_query')))
     else:
         search = False
     return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses})
