@@ -91,7 +91,6 @@ def panel(request):
 
 
 def make_course(request):
-    form = None
     if request.method == 'POST':
         form = MakeCourseForm(request.POST)
         course = form.save(commit=False)
@@ -101,3 +100,7 @@ def make_course(request):
     else:
         form = MakeCourseForm()
     return render(request, 'makecourse.html', {'form': form})
+
+
+def show_courses(request):
+    return render(request, 'courses.html')
