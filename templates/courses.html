@@ -64,7 +64,7 @@
                         {{ course.teacher }}
                     </div>
                     <a class="add" href="/add/{{ course.course_number }}">register</a>
-                    <a class="detail" href="/data/{{ course.course_number }}">detail</a>
+                    <a class="details" href="/data/{{ course.course_number }}">detail</a>
                 </div>
             {% endif %}
         {% endfor %}
@@ -94,7 +94,7 @@
                     {{ course.teacher }}
                 </div>
             <a class="remove" href="/remove/{{ course.course_number }}">remove</a>
-            <a class="detail" href="/data/{{ course.course_number }}">detail</a>
+            <a class="details" href="/data/{{ course.course_number }}">detail</a>
             </div>
         {% endfor %}
     </div>
