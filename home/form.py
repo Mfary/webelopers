@@ -63,8 +63,9 @@ class MakeCourseForm(ModelForm):
     end_time = forms.TimeField(required=True)
     first_day = forms.ChoiceField(choices=choice, required=True)
     second_day = forms.ChoiceField(choices=choice, required=False)
+    exam_date = forms.DateField()
 
     class Meta:
         model = Course
         fields = {'department', 'name', 'course_number', 'group_number', 'teacher', 'start_time', 'end_time',
-                  'first_day', 'second_day',}
+                  'first_day', 'second_day', 'exam_date'}

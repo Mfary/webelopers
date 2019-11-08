@@ -13,6 +13,7 @@ class Course(models.Model):
     end_time = models.TimeField()
     first_day = models.CharField(max_length=30)
     second_day = models.CharField(max_length=30)
+    exam_date = models.DateField()
 
 
 class Profile(User):
