@@ -19,7 +19,7 @@
                     {% endif %}
                 </div>
                 <div>
-                    {{ course.start_time }} {{ course.end_time }}
+                    {{ course.start_time.hour }}:{{ course.start_time.minute }} {{ course.end_time.hour }}:{{  course.end_time.minute }}
                 </div>
                 <div>
                     {{ course.teacher }}
