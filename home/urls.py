@@ -15,5 +15,5 @@ urlpatterns = [
     path('panel/', panel),
     path('make_course/', make_course),
     path('courses/', show_courses),
-    path('add/', register_course),
+    path(r'^add/(\d+)', register_course),
 ]

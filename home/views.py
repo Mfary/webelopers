@@ -141,6 +141,7 @@ def show_courses(request):
 
 
 login_required(login_url='/login')
-def register_course(request):
+def register_course(request , id):
+    course = Course.objects.filter(course_number=id)
     #register
     return redirect('/courses')
