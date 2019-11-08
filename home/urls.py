@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from home.views import homepage, signup, logout_view, login_view, contact_us, success, profile, change, panel, \
-    make_course, show_courses, register_course, remove_course
+    make_course, show_courses, register_course, remove_course, course_detail
 from django.conf.urls.static import static
 
 from untitled1 import settings
