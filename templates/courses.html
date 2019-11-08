@@ -63,13 +63,13 @@
                         <i class="user outline icon"></i>
                         {{ course.teacher }}
                     </div>
-                    <a class="add" href="/add/?q={{ course.course_number }}">register</a>
+                    <a class="add" href="/add/{{ course.course_number }}">register</a>
                 </div>
             {% endif %}
         {% endfor %}
     </div>
     <h2>My courses</h2>
-    <div id="all_courses" class="ui divided relaxed list">
+    <div id="my_courses" class="ui divided relaxed list">
         {% for course in my_courses %}
             <div class="{{ course.course_number }}_{{ course.group_number }}">
                 <h4>{{ course.name }}</h4>
@@ -92,7 +92,6 @@
                     <i class="user outline icon"></i>
                     {{ course.teacher }}
                 </div>
-            <a class="add" href="/add/{{ course.course_number }}">register</a>
             </div>
         {% endfor %}
     </div>
