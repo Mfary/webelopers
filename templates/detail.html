@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>
+        detail
+    </title>
+{% endblock %}
+{% block body %}
+<h2>course detail</h2>
+    <p>{{ course.department }}</p>
+    <p>{{ course.name }}</p>
+    <p>{{ course.course_number }}</p>
+    <p>{{ course.teacher }}</p>
+    <p>{{ course.start_time.hour }}:{{ course.start_time.minute }}</p>
+    <p>{{ course.end_time.hour }}:{{ course.end_time.minute }}</p>
+    <p>{{ course.first_day }}</p>
+    <p>{{ course.second_day }}</p>
+
+
+{% endblock %}
