@@ -83,6 +83,7 @@ def profile(request):
                                             'username': request.user.username})
 
 
+@login_required(login_url='/login')
 def change(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST)
@@ -96,10 +97,12 @@ def change(request):
     return render(request, 'change.html', {'form': ProfileForm()})
 
 
+@login_required(login_url='/login')
 def panel(request):
     return render(request, 'panel.html')
 
 
+@login_required(login_url='/login')
 def make_course(request):
     if request.method == 'POST':
         form = MakeCourseForm(request.POST)
@@ -112,5 +115,6 @@ def make_course(request):
     return render(request, 'makecourse.html', {'form': form})
 
 
+@login_required(login_url='/login')
 def show_courses(request):
     return render(request, 'courses.html', {'courses': Course.objects.all()})
