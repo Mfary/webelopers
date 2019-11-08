@@ -2,6 +2,7 @@ from itertools import chain
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import QuerySet
 from django.forms import Form
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -10,7 +11,7 @@ from django.core.mail import EmailMessage
 
 # Create your views here.
 from home.form import SignUpForm, SignInForm, FeedBack, ProfileForm, MakeCourseForm
-from home.models import Course
+from home.models import Course, Profile
 
 
 def homepage(request):
@@ -21,7 +22,7 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         password_error = form.data.get('password1') != form.data.get('password2')
-        username_error = User.objects.filter(username=form.data.get('username'))
+        username_error = Profile.objects.filter(username=form.data.get('username'))
         if password_error or username_error:
             return render(request, 'signup.html', {'form': SignUpForm(), 'password_error': password_error,
                                                    'username_error': username_error})
@@ -95,6 +96,9 @@ def change(request):
         if form.data.get('last_name'):
             request.user.last_name = form.data.get('last_name')
             request.user.save()
+        if form.data.get('image'):
+            request.user.image = form.data.get('image')
+            request.user.save()
         return redirect('/profile')
     return render(request, 'change.html', {'form': ProfileForm()})
 
@@ -109,7 +113,7 @@ def make_course(request):
     if request.method == 'POST':
         form = MakeCourseForm(request.POST)
         course = form.save(commit=False)
-        #save course
+        # save course
         course.save()
         return redirect('/')
     else:
@@ -120,17 +124,17 @@ def make_course(request):
 @login_required(login_url='/login')
 def show_courses(request):
     courses = Course.objects.all()
-    search_courses = {}
+    search_courses = QuerySet().none()
     if request.POST:
         search = True
-        if not request.POST.get('department') and not request.POST.get('teacher')  and not request.POST.get('course') :
-            search_courses = chain(search_courses , Course.objects.filter(department=request.POST.get('search_query')))
+        if not request.POST.get('department') and not request.POST.get('teacher') and not request.POST.get('course'):
+            search_courses = search_courses | Course.objects.filter(department=request.POST.get('search_query'))
         if request.POST.get('department'):
-            search_courses = chain(search_courses , Course.objects.filter(department=request.POST.get('search_query')))
-        if request.POST.get('teacher') :
-            search_courses = chain(search_courses , Course.objects.filter(teacher=request.POST.get('search_query')))
+            search_courses = search_courses | Course.objects.filter(department=request.POST.get('search_query'))
+        if request.POST.get('teacher'):
+            search_courses = search_courses | Course.objects.filter(teacher=request.POST.get('search_query'))
         if request.POST.get('course'):
-            search_courses = chain(search_courses, Course.objects.filter(name=request.POST.get('search_query')))
+            search_courses = search_courses | Course.objects.filter(name=request.POST.get('search_query'))
     else:
         search = False
     return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses})

@@ -1,6 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
+class Profile(User):
+    image = models.ImageField()
 
 
 class Course(models.Model):

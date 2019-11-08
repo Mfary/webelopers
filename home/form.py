@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import Form, ModelForm
 
-from home.models import Course
+from home.models import Course, Profile
 
 
 class SignUpForm(UserCreationForm):
@@ -23,7 +23,7 @@ class SignUpForm(UserCreationForm):
     )
 
     class Meta:
-        model = User
+        model = Profile
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
 
@@ -32,7 +32,7 @@ class SignInForm(Form):
     password = forms.CharField(max_length=30, required=True, widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = Profile
         fields = ('username', 'password1', )
 
 
@@ -45,10 +45,11 @@ class FeedBack(Form):
 class ProfileForm(Form):
     first_name = forms.CharField(max_length=30, required=False)
     last_name = forms.CharField(max_length=30, required=False)
+    image = forms.ImageField()
 
     class Meta:
-        model = User
-        fields = ('first_name', 'last_name',)
+        model = Profile
+        fields = ('first_name', 'last_name', 'image')
 
 
 class MakeCourseForm(ModelForm):
