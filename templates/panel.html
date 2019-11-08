@@ -6,10 +6,14 @@
 {% endblock %}
 {% block body %}
     <h2>Panel</h2>
-    <div class="ui two item menu">
-        {% if request.user.is_superuser %}
+    {% if request.user.is_superuser %}
+        <div class="ui two item menu">
             <a id="make_new_course" href="/make_course/" class="item">Make new course</a>
-        {% endif %}
-        <a id="courses" href="/courses/" class="item">Courses</a>
-    </div>
+            <a id="courses" href="/courses/" class="item">Courses</a>
+        </div>
+    {% else %}
+        <div class="ui one item menu">
+            <a id="courses" href="/courses/" class="item">Courses</a>
+        </div>
+    {% endif %}
 {% endblock %}
