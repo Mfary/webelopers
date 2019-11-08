@@ -143,5 +143,5 @@ def show_courses(request):
 login_required(login_url='/login')
 def register_course(request , id):
     course = Course.objects.filter(course_number=id)
-    #register
+    profile = Profile.objects.get(user=request.user)
     return redirect('/courses')
