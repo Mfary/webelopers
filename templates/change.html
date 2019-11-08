@@ -4,7 +4,6 @@
     <form id="setting_form" method="post" action="/change/" class="ui form">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="file" accept="image" name="image">
         <button type="submit" class="ui button">Change</button>
     </form>
 {% endblock %}
