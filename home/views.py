@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 
 # Create your views here.
 from home.form import SignUpForm, SignInForm, FeedBack, ProfileForm, MakeCourseForm
+from home.models import Course
 
 
 def homepage(request):
@@ -112,4 +113,4 @@ def make_course(request):
 
 
 def show_courses(request):
-    return render(request, 'courses.html')
+    return render(request, 'courses.html', {'courses': Course.objects.all()})

@@ -5,5 +5,27 @@
     </title>
 {% endblock %}
 {% block body %}
+    <div id="all_courses">
+        {% for course in courses %}
+            <div class="{{ course.course_number }}_{{ course.group_number }}">
+                <h4>{{ course.name }}</h4>
+                <div>
+                     {{ course.department }}
+                </div>
+                <div>
+                    {{ course.first_day  }}
+                    {% if course.second_day %}
+                        ,{{ course.second_day }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ course.start_time }} {{ course.end_time }}
+                </div>
+                <div>
+                    {{ course.teacher }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
