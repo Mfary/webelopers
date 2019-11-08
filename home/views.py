@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
 # Create your views here.
+from django.views import static
+
 from home.form import SignUpForm, SignInForm, FeedBack, ProfileForm, MakeCourseForm
 from home.models import Course, Profile
 
@@ -78,6 +80,7 @@ def success(request):
 
 @login_required(login_url='/login')
 def profile(request):
+    static.serve(request, Profile.objects.get(username=request.user.username).image.path)
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
                                             'username': request.user.username})
 
@@ -136,7 +139,7 @@ def show_courses(request):
     return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses})
 
 
-login_required(login_url='/login')
+@login_required(login_url='/login')
 def register_course(request , id):
     course = Course.objects.filter(course_number=id)
     profile = Profile.objects.get(user=request.user)

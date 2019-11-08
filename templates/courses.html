@@ -41,6 +41,36 @@
     <h2>Courses</h2>
     <div id="all_courses" class="ui divided relaxed list">
         {% for course in courses %}
+            {% if not course in my_courses %}
+                <div class="{{ course.course_number }}_{{ course.group_number }}">
+                    <h4>{{ course.name }}</h4>
+                    <div class="ui label">
+                        <i class="building outline icon"></i>
+                        {{ course.department }}
+                    </div>
+                    <div class="ui label">
+                        <i class="calendar outline icon"></i>
+                        {{ course.first_day }}
+                        {% if course.second_day %}
+                            {{ course.second_day }}
+                        {% endif %}
+                    </div>
+                    <div class="ui label">
+                        <i class="clock outline icon"></i>
+                        {{ course.start_time.hour }}:{{ course.start_time.minute }} {{ course.end_time.hour }}:{{ course.end_time.minute }}
+                    </div>
+                    <div class="ui label">
+                        <i class="user outline icon"></i>
+                        {{ course.teacher }}
+                    </div>
+                    <a class="add" href="/add/?q={{ course.course_number }}">register</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <h2>My courses</h2>
+    <div id="all_courses" class="ui divided relaxed list">
+        {% for course in my_courses %}
             <div class="{{ course.course_number }}_{{ course.group_number }}">
                 <h4>{{ course.name }}</h4>
                 <div class="ui label">
@@ -62,9 +92,8 @@
                     <i class="user outline icon"></i>
                     {{ course.teacher }}
                 </div>
-            <a class="add" href="/add/?q={{ course.course_number }}">register</a>
+                <a class="add" href="/add/?q={{ course.course_number }}">register</a>
             </div>
         {% endfor %}
     </div>
-
 {% endblock %}
