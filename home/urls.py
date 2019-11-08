@@ -19,4 +19,4 @@ urlpatterns = [
     path('make_course/', make_course),
     path('courses/', show_courses),
     path('add/<course_id>', register_course),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
