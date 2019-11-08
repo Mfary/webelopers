@@ -81,6 +81,7 @@ def success(request):
 @login_required(login_url='/login')
 def profile(request):
     image = Profile.objects.get(username=request.user.username).image
+    print(request.user.username)
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
                                             'username': request.user.username, 'image': image.url if image else "s"})
 
