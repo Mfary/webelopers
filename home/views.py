@@ -81,7 +81,10 @@ def success(request):
 @login_required(login_url='/login')
 def profile(request):
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
-                                            'username': request.user.username, 'image': Profile.objects.get(username=request.user.username).image.path})
+                                            'username': request.user.username, 'image': Profile.objects.get(username=
+                                                                                                            request.user
+                                                                                                            .username).
+                  image.url})
 
 
 @login_required(login_url='/login')
@@ -141,7 +144,7 @@ def show_courses(request):
 
 
 @login_required(login_url='/login')
-def register_course(request , course_id):
+def register_course(request, course_id):
     course = Course.objects.get(course_number=course_id)
     profile = Profile.objects.get(username=request.user.username)
     profile.courses.add(course)
