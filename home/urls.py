@@ -6,6 +6,11 @@ from django.conf.urls.static import static
 
 from untitled1 import settings
 
+
+def course_detail(args):
+    pass
+
+
 urlpatterns = [
     path('' , homepage),
     path('signup/', signup),
