@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
     <h2>Change</h2>
-    <form id="setting_form" method="post" action="/make_course/">
+    <form id="make_course" method="post" action="/make_course/">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Make</button>
