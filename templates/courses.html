@@ -10,6 +10,21 @@
         <input name="search_query">
         <button type="submit" class="ui button" name="submit">Search</button>
     </form>
+    {% if search %}
+        <div id="search_result" class="ui divided relaxed list">
+            {% for course in search_courses %}
+                <div class="item {{ course.course_number }}_{{ course.group_number }}">
+                    <div class="ui label">
+                        {{ course.name }}
+                    </div>
+                    <div class="ui label">
+                        <i class="user outline icon"></i>
+                        {{ course.teacher }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div id="all_courses" class="ui divided relaxed list">
         {% for course in courses %}
             <div class="item {{ course.course_number }}_{{ course.group_number }}">
