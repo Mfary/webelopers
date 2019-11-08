@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from home.views import homepage, signup, logout_view, login_view, contact_us, success, profile, change, panel, \
-    make_course, show_courses, register_course
+    make_course, show_courses, register_course, remove_course
 from django.conf.urls.static import static
 
 from untitled1 import settings
@@ -19,4 +19,5 @@ urlpatterns = [
     path('make_course/', make_course),
     path('courses/', show_courses),
     path('add/<course_id>', register_course),
+    path('remove/<course_id>', remove_course),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
