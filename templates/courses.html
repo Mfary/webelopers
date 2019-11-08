@@ -27,7 +27,7 @@
     {% if search %}
         <div id="search_result" class="ui divided relaxed list">
             {% for course in search_courses %}
-                <div class="item {{ course.course_number }}_{{ course.group_number }}">
+                <div class="{{ course.course_number }}_{{ course.group_number }}">
                     <div class="ui label">
                         {{ course.name }}
                     </div>
