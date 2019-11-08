@@ -5,6 +5,7 @@
     </title>
 {% endblock %}
 {% block body %}
+    <h2>Result</h2>
     <form id="search_form" method="post" action="/courses/" class="ui form">
         {% csrf_token %}
         <input name="search_query">
@@ -25,6 +26,7 @@
             {% endfor %}
         </div>
     {% endif %}
+    <h2>Courses</h2>
     <div id="all_courses" class="ui divided relaxed list">
         {% for course in courses %}
             <div class="item {{ course.course_number }}_{{ course.group_number }}">
