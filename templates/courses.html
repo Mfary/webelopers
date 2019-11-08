@@ -21,7 +21,6 @@
             <input name="course" type="checkbox">
             <label>Course</label>
         </div>
-    <a class="add" href="">register</a>
     </form>
     <h2>Result</h2>
     {% if search %}
@@ -63,6 +62,7 @@
                     <i class="user outline icon"></i>
                     {{ course.teacher }}
                 </div>
+            <a class="add" href="/add/?q={{ course.course_number }}">register</a>
             </div>
         {% endfor %}
     </div>
