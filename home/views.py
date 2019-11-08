@@ -154,6 +154,7 @@ def register_course(request, course_id):
 @login_required(login_url='/login')
 def remove_course(request , course_id):
     course = Course.objects.get(course_number=course_id)
+    course.num -= 1
     profile = Profile.objects.get(username=request.user.username)
     profile.courses.remove(course)
     return redirect('/courses')
@@ -162,4 +163,5 @@ def remove_course(request , course_id):
 @login_required(login_url='/login')
 def course_detail(request , course_id):
     course = Course.objects.get(course_number=course_id)
+    course.num +=1
     return render(request, 'detail.html', {'course': course})

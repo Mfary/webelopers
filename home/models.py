@@ -14,6 +14,7 @@ class Course(models.Model):
     first_day = models.CharField(max_length=30)
     second_day = models.CharField(max_length=30)
     exam_date = models.DateField()
+    num = models.PositiveIntegerField(default=0)
 
 
 class Profile(AbstractUser):
