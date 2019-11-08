@@ -119,7 +119,7 @@ def make_course(request):
 def show_courses(request):
     if request.POST:
         search = True
-        courses = Course.objects.filter(department=request.POST.get('search_query')
+        courses = Course.objects.filter(department=request.POST.get('search_query'))
     else:
         search = False
         courses = Course.objects.all()
