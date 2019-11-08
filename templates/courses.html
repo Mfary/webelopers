@@ -5,17 +5,17 @@
     </title>
 {% endblock %}
 {% block body %}
-    <div id="all_courses">
+    <div id="all_courses" class="ui list">
         {% for course in courses %}
-            <div class="{{ course.course_number }}_{{ course.group_number }}">
+            <div class="item {{ course.course_number }}_{{ course.group_number }}">
                 <h4>{{ course.name }}</h4>
-                <div>
+                <div class="ui label">
                      {{ course.department }}
                 </div>
                 <div>
-                    {{ course.first_day  }}
+                    {{ course.first_day }}
                     {% if course.second_day %}
-                        ,{{ course.second_day }}
+                        {{ course.second_day }}
                     {% endif %}
                 </div>
                 <div>

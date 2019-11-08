@@ -2,21 +2,23 @@
 
 {% block body %}
     <h2>Sign up</h2>
-    <form method="post" id="register_form" action="/signup/">
+    <form method="post" id="register_form" action="/signup/" class="ui form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" name="submit">Sign up</button>
+        <button type="submit" name="submit" class="ui button">Sign up</button>
     </form>
-    <div id="errors">
-        {% if username_error %}
-            <p>
-            نام کاربری شما در سیستم موجود است
-            </p>
-        {% endif %}
-        {% if password_error %}
-            <p>
-            گذرواژه و تکرار گذرواژه یکسان نیستند
-            </p>
-        {% endif %}
-    </div>
+    {% if username_error or password_error %}
+        <div id="errors" class="ui label">
+            {% if username_error %}
+                <p>
+                    نام کاربری شما در سیستم موجود است
+                </p>
+            {% endif %}
+            {% if password_error %}
+                <p>
+                    گذرواژه و تکرار گذرواژه یکسان نیستند
+                </p>
+            {% endif %}
+        </div>
+    {% endif %}
 {% endblock %}

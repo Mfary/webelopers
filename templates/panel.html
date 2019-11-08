@@ -7,7 +7,9 @@
 {% block body %}
     <h2>Panel</h2>
     <div class="ui two item menu">
-        <a id="make_new_course" href="/make_course/" class="item">Make new course</a>
+        {% if request.user.is_superuser %}
+            <a id="make_new_course" href="/make_course/" class="item">Make new course</a>
+        {% endif %}
         <a id="courses" href="/courses/" class="item">Courses</a>
     </div>
 {% endblock %}

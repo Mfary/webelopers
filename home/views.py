@@ -64,9 +64,9 @@ def contact_us(request):
     if request.method == 'POST':
         form = FeedBack(request.POST)
         form.is_valid()
-        email = EmailMessage(subject=form.cleaned_data.get('title'), body=form.cleaned_data.get('email') + '\n' + form.
-                             cleaned_data.get('text') + '\n', to=['webe19lopers@gmail.com'])
-        email.send()
+        # email = EmailMessage(subject=form.cleaned_data.get('title'), body=form.cleaned_data.get('email') + '\n' + form.
+        #                      cleaned_data.get('text') + '\n', to=['webe19lopers@gmail.com'])
+        # email.send()
         return render(request, 'success.html')
     else:
         form = FeedBack()

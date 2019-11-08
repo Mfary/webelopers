@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import Form
+from django.forms import Form, ModelForm
 
 from home.models import Course
 
@@ -12,12 +12,12 @@ class SignUpForm(UserCreationForm):
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, required=True)
     password1 = forms.CharField(
-        label="password",
+        label="Password",
         widget=forms.PasswordInput,
         required=True,
     )
     password2 = forms.CharField(
-        label="password confirm",
+        label="Confirm password",
         widget=forms.PasswordInput,
         required=True,
     )
@@ -51,7 +51,7 @@ class ProfileForm(Form):
         fields = ('first_name', 'last_name',)
 
 
-class MakeCourseForm(Form):
+class MakeCourseForm(ModelForm):
     choice = {('0', 'Saturday'), ('1', 'Sunday'), ('2', 'Monday'), ('3', 'Tuesday'), ('4', 'Wednesday')}
     department = forms.CharField(max_length=50 , required=True)
     name = forms.CharField(max_length=50, required=True)
@@ -65,4 +65,5 @@ class MakeCourseForm(Form):
 
     class Meta:
         model = Course
-        fields = {'department', 'name', 'course_number', 'group_number', 'teacher', 'start_time', 'end_time', 'first_day', 'second_day',}
+        fields = {'department', 'name', 'course_number', 'group_number', 'teacher', 'start_time', 'end_time',
+                  'first_day', 'second_day',}
