@@ -80,26 +80,25 @@ def success(request):
 
 @login_required(login_url='/login')
 def profile(request):
+    image = Profile.objects.get(username=request.user.username).image
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
-                                            'username': request.user.username, 'image': Profile.objects.get(username=
-                                                                                                            request.user
-                                                                                                            .username).
-                  image.url})
+                                            'username': request.user.username, 'image': image.url if image else None})
 
 
 @login_required(login_url='/login')
 def change(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
-        if form.data.get('first_name'):
-            request.user.first_name = form.data.get('first_name')
-            request.user.save()
-        if form.data.get('last_name'):
-            request.user.last_name = form.data.get('last_name')
-            request.user.save()
         user_profile = Profile.objects.get(username=request.user.username)
-        user_profile.image = request.FILES.get('image')
-        user_profile.save()
+        if form.data.get('first_name'):
+            user_profile.first_name = form.data.get('first_name')
+            user_profile.save()
+        if form.data.get('last_name'):
+            user_profile.last_name = form.data.get('last_name')
+            user_profile.save()
+        if len(request.FILES):
+            user_profile.image = request.FILES.get('image')
+            user_profile.save()
         return redirect('/profile')
     return render(request, 'change.html', {'form': ProfileForm()})
 
@@ -138,9 +137,9 @@ def show_courses(request):
             search_courses = search_courses | Course.objects.filter(name=request.POST.get('search_query'))
     else:
         search = False
+    username_courses = Profile.objects.get(username=request.user.username).courses
     return render(request, 'courses.html', {'courses': courses, 'search': search, 'search_courses': search_courses,
-                                            'my_courses': Profile.objects.get(username=request.user.username).courses.
-                  all()})
+                                            'my_courses': username_courses.all() if username_courses else None})
 
 
 @login_required(login_url='/login')

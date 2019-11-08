@@ -17,7 +17,7 @@ class Course(models.Model):
 
 
 class Profile(User):
-    image = models.ImageField()
-    courses = models.ManyToManyField(Course)
+    image = models.ImageField(null=True)
+    courses = models.ManyToManyField(Course, null=True)
 
 
