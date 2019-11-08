@@ -10,7 +10,7 @@
     <span id="text_last_name" class="ui label">{{ lastname }}</span>
     <span id="text_user_name" class="ui label">{{ username }}</span>
     {% if image %}
-        <img src={{ image }} id="profile_image">
+        <img src="{{ image }}" id="profile_image">
     {% endif %}
     <a id="setting" href="/change" class="ui button">Change</a>
 {% endblock %}

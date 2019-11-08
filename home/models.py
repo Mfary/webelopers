@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
@@ -16,7 +16,7 @@ class Course(models.Model):
     exam_date = models.DateField()
 
 
-class Profile(User):
+class Profile(AbstractUser):
     image = models.ImageField(null=True)
     courses = models.ManyToManyField(Course, null=True)
 

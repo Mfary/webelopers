@@ -135,3 +135,5 @@ EMAIL_HOST_PASSWORD = '09193360118'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'home.Profile'
