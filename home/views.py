@@ -80,9 +80,8 @@ def success(request):
 
 @login_required(login_url='/login')
 def profile(request):
-    static.serve(request, Profile.objects.get(username=request.user.username).image.path)
     return render(request, 'profile.html', {'firstname': request.user.first_name, 'lastname': request.user.last_name,
-                                            'username': request.user.username})
+                                            'username': request.user.username, 'image': Profile.objects.get(username=request.user.username).image.path})
 
 
 @login_required(login_url='/login')
